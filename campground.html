@@ -1,0 +1,100 @@
+<!doctype html>
+<head>
+  <meta charset="utf-8">
+  <title>Camp Features</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+    <script src="https://fb.me/react-15.0.1.js"></script>
+    <script src="https://fb.me/react-dom-15.0.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+    <link rel="stylesheet" href="styles.css">    
+</head>
+<body>
+  <div class="features"></div>
+  <script src="camp_features.js"></script>
+  <script type="text/babel">
+
+    class SubFeatures extends React.Component {
+      constructor (props) {
+        super (props)
+      }
+
+      render () {
+        return (
+          <ul class="columns2">
+            {this.props.subfeatures.map((f, i) => {
+              return (<FeatureListEntry key={i} feature={f} show='true' />)
+            })}
+          </ul>  
+        )
+      }
+    }
+
+    class FeatureListEntry extends React.Component {
+      constructor (props) {
+        super(props)
+
+        this.state = {
+          showSub: false,
+          sign: '+'
+        }
+
+        this.toggleState = this.toggleState.bind(this)
+      }
+
+      toggleState() {
+    
+        this.setState ({
+          showSub: !this.state.showSub,
+          sign: this.state.sign === '+' ? '-' : '+' 
+        })
+
+      }
+
+      render () {
+        const feature = this.props.feature
+        if (this.props.show) {
+          if (feature.presence) {
+            return (  
+                      <li className="active" onClick={this.toggleState}> 
+                        {feature.title}
+                        {feature.subfeatures.length > 0 ? <strong id='more'> {this.state.sign} </strong> : null}
+                        {this.state.showSub ? <SubFeatures subfeatures={feature.subfeatures} /> : null}
+                      </li>
+                    )
+          } else {
+            return (<li className="inactive">{feature.title}</li>)
+          }
+        } 
+        
+        return null
+      }  
+    }
+
+    class App extends React.Component {
+      constructor (props) {
+        super(props)
+
+        //Read data from file or API
+        this.inputFeatures = FEATURES
+
+      }
+
+      render () {
+        return (
+          <div>
+            <h3>Camp ABC Features</h3>
+            <ul class="columns">
+              {FEATURES.map((feature, index) => { 
+                return <FeatureListEntry feature={feature}
+                                   key={index} 
+                                   show='true' />
+              })}
+            </ul> 
+          </div> 
+        )
+      }
+    }
+    ReactDOM.render(<App />, document.querySelector('.features'))
+  </script>
+</body>
+</html>

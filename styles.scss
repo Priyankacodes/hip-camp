@@ -1,0 +1,52 @@
+@import url(http://fonts.googleapis.com/css?family=Roboto+Slab|Open+Sans:400italic,700italic,400,700);
+
+$font-stack: 'Roboto Slab', sans-serif;
+$primary-color: #FF4933;
+
+body {
+  font: 100% $font-stack;
+  color: $primary-color;
+  background-color: white;
+}
+
+columns {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+  -moz-column-count: 2;
+	-moz-column-gap: 10px;
+	-webkit-column-count: 2;
+	-webkit-column-gap: 10px;
+	column-count: 2;
+	column-gap: 10px;
+}
+
+.active {
+  color: black;
+}
+
+.inactive {
+  color: grey;
+  text-decoration: line-through;
+}
+
+.columns2 {
+	-moz-column-count: 3;
+	-moz-column-gap: 5px;
+	-webkit-column-count: 3;
+	-webkit-column-gap: 5px;
+	column-count: 3;
+	column-gap: 5px;
+	
+}
+
+.features {
+	position: absolute;
+  top: 30%;
+  left: 50%;
+  margin: -100px 0 0 -150px;
+}
+
+#more {
+	float: right;
+}

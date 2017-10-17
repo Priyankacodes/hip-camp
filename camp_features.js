@@ -40,10 +40,8 @@ var FEATURES = [
         'subfeatures': [
           {
             'title': 'Pack in, pack out',
-            'presence': true,
+            'presence': false,
             'subfeatures': [
-
-
             ]
           }
         ]

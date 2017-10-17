@@ -55,14 +55,20 @@
         if (this.props.show) {
           if (feature.presence) {
             return (  
-                      <li className="active" onClick={this.toggleState}> 
+                      <li className="active"> 
                         {feature.title}
-                        {feature.subfeatures.length > 0 ? <strong id='more'> {this.state.sign} </strong> : null}
+                        {feature.subfeatures.length > 0 ? <strong id='more' onClick={this.toggleState}> {this.state.sign} </strong> : null}
                         {this.state.showSub ? <SubFeatures subfeatures={feature.subfeatures} /> : null}
                       </li>
                     )
           } else {
-            return (<li className="inactive">{feature.title}</li>)
+            return (
+                      <li className="inactive"> 
+                        {feature.title}
+                        {feature.subfeatures.length > 0 ? <strong id='more' onClick={this.toggleState}> {this.state.sign} </strong> : null}
+                        {this.state.showSub ? <SubFeatures subfeatures={feature.subfeatures} /> : null}
+                      </li>
+                    )
           }
         } 
         
